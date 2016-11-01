@@ -147,9 +147,9 @@ class TweetViewController: UIViewController,UITableViewDataSource,UITableViewDel
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let composeViewController = storyboard.instantiateViewController(withIdentifier: "composeTweetViewController") as! ComposeTweetViewController
-        let cell = sender as! TweetsCell
-        let indexPath = tableView.indexPath(for: cell)
-        let tweet = tweets[(indexPath! as NSIndexPath).row]
+       
+        let indexPath = tableView.indexPath(for: sender.superview??.superview as! UITableViewCell)!
+        let tweet = tweets[indexPath.row]
         composeViewController.tweet = tweet
         composeViewController.delegate = self
         present(composeViewController, animated: true) {
